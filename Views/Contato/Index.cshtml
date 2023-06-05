@@ -1,3 +1,4 @@
+<!-- CARREGA A PAGINA E RETORNA A LISTA DE CONTATOS -->
 @model IEnumerable<_11_Frontend_com_ASP_NET_MVC.Models.Contato>
 
 @{
@@ -30,7 +31,6 @@
     </thead>
     
     <tbody>
-        <!-- TODO O  ERRO ESTA AQUI EMBAIXO --> 
         @foreach (var item in Model)
         {
             <tr>
@@ -47,9 +47,9 @@
                     @Html.DisplayFor(model => item.Ativo)
                 </td>
                 <td>
-                    <a asp-action="Editar" asp-roue-id="item.Id">Editar</a>|
-                    <a asp-action="Detalhes" asp-roue-id="item.Id">Detalhes</a>|
-                    <a asp-action="Deletar" asp-roue-id="item.Id">Deletar</a>
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>|
+                    <a asp-action="Detalhes" asp-route-id="@item.Id">Detalhes</a>|
+                    <a asp-action="Deletar" asp-route-id="@item.Id">Deletar</a>
                 </td>
             </tr>
         }
