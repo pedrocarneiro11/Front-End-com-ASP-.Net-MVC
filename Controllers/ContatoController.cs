@@ -53,4 +53,46 @@ namespace _11_Frontend_com_ASP_NET_MVC.Controllers;
                 return View(contato);
             }
         }
+
+        // Criar método POST para editar contato
+        
+        public IActionResult Editar(int id)
+        {
+            var contato = _context.Contatos.Find(id);
+
+            if(contato == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(contato);
+        }
+
+        public IActionResult EditarContato(int id)
+        {
+            var contato = _context.Contatos.Find(id);
+
+            if(contato == null){
+                return RedirectToAction(nameof(Index));
+            } else {
+                return View(contato);
+            }
+        }
+
+
+        // MÉTODO POST PARA EDITAR CONTATO
+        [HttpPost]
+        public IActionResult Editar(Contato contato)
+        {
+            var contatoBanco = _context.Contatos.Find(contato.Id);
+
+            contatoBanco.Nome = contato.Nome;
+            contatoBanco.Telefone = contato.Telefone;
+            contatoBanco.Ativo = contato.Ativo;
+
+            _context.Contatos.Update(contatoBanco);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
