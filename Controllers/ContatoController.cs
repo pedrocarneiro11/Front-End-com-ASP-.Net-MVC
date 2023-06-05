@@ -30,4 +30,9 @@ namespace _11_Frontend_com_ASP_NET_MVC.Controllers;
         {
             return View("Error!");
         }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
     }
