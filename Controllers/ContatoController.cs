@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using _11_Frontend_com_ASP_NET_MVC.Context;
+using _11_Frontend_com_ASP_NET_MVC.Models;
 
 namespace _11_Frontend_com_ASP_NET_MVC.Controllers;
 
@@ -31,8 +32,25 @@ namespace _11_Frontend_com_ASP_NET_MVC.Controllers;
             return View("Error!");
         }
 
+
+        // CADASTRAR NOVO CONTATO \/
+        [HttpGet]
         public IActionResult Criar()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Criar(Contato contato)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Contatos.Add(contato);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            } else
+            {
+                return View(contato);
+            }
         }
     }
