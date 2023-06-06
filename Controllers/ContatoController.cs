@@ -95,4 +95,18 @@ namespace _11_Frontend_com_ASP_NET_MVC.Controllers;
 
             return RedirectToAction(nameof(Index));
         }
+
+        // EXIBIR PAGINA DE DETALHES DO CONTATO
+
+        public IActionResult Detalhes(int id)
+        {
+            var contato = _context.Contatos.Find(id);
+            if (contato == null)
+            {
+                return RedirectToAction(nameof(Index));
+            } else 
+            {
+                return View(contato);
+            }            
+        }
     }
